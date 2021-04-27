@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace WebApi.EF.SalerDb
+namespace Models.SalerDb
 {
     [Table("SALER_INFO")]
     public class SalerInfo

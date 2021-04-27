@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Models.SalerDb;
 using System;
 using System.Threading.Tasks;
 using WebApi.EF;
@@ -11,12 +12,17 @@ namespace Net5Demo
         private static async Task Main(string[] args)
         {
 
-            var options = new DbContextOptions<SalerDbContext>();
-
-            await using var context = new SalerDbContext(options);
-            await Write(context);
+            var options = new DbContextOptionsBuilder<SalerDbContext>();
+            options.UseOracle(GetConnectionString("OraConn"));
+            await using var context = new SalerDbContext(options.Options);
+            //await Write(context);
             await Read(context);
 
+        }
+
+        static string GetConnectionString(string key)
+        {
+            return System.Configuration.ConfigurationManager.ConnectionStrings[key].ConnectionString;
         }
 
         static async Task Read(SalerDbContext context)

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WebApi.EF.SalerDb
+namespace Models.SalerDb
 {
     [Table("SALER_ADDRESS")]
     public class SalerAddress

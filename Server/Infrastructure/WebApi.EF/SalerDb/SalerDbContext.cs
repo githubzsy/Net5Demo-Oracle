@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Models.SalerDb;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,27 +31,27 @@ namespace WebApi.EF.SalerDb
 
             modelBuilder.Entity<SalerInfo>(entity =>
             {
-                entity.Property(e => e.Id).UseHiLo(SalerDb.SalerInfo.SEQ_SALERINFO_ID);
+                entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerInfo.SEQ_SALERINFO_ID);
             });
 
             modelBuilder.Entity<SalerScore>(entity =>
             {
-                entity.Property(e => e.Id).UseHiLo(SalerDb.SalerScore.SEQ_SALER_SCORE_ID);
+                entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerScore.SEQ_SALER_SCORE_ID);
             });
 
             modelBuilder.Entity<SalerAddress>(entity =>
             {
-                entity.Property(e => e.Id).UseHiLo(SalerDb.SalerAddress.SEQ_SALER_ADDRESS_ID);
+                entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerAddress.SEQ_SALER_ADDRESS_ID);
             });
 
             base.OnModelCreating(modelBuilder);
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseOracle(Consts.ORACLE_CONNSTR);
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseOracle(Consts.ORACLE_CONNSTR);
 
-            base.OnConfiguring(optionsBuilder);
-        }
+        //    base.OnConfiguring(optionsBuilder);
+        //}
     }
 }
