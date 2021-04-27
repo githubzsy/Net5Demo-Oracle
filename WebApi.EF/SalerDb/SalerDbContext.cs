@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Tools;
 
 namespace WebApi.EF.SalerDb
 {
@@ -15,6 +14,10 @@ namespace WebApi.EF.SalerDb
         }
 
         public DbSet<SalerInfo> SalerInfo { get; set; }
+
+        public DbSet<SalerScore> SalerScore { get; set; }
+
+        public DbSet<SalerAddress> SalerAddress { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,7 +30,17 @@ namespace WebApi.EF.SalerDb
 
             modelBuilder.Entity<SalerInfo>(entity =>
             {
-                entity.Property(e => e.Id).UseHiLo(Consts.SEQ_INFO_ID);
+                entity.Property(e => e.Id).UseHiLo(SalerDb.SalerInfo.SEQ_SALERINFO_ID);
+            });
+
+            modelBuilder.Entity<SalerScore>(entity =>
+            {
+                entity.Property(e => e.Id).UseHiLo(SalerDb.SalerScore.SEQ_SALER_SCORE_ID);
+            });
+
+            modelBuilder.Entity<SalerAddress>(entity =>
+            {
+                entity.Property(e => e.Id).UseHiLo(SalerDb.SalerAddress.SEQ_SALER_ADDRESS_ID);
             });
 
             base.OnModelCreating(modelBuilder);

@@ -21,18 +21,30 @@ namespace Net5Demo
 
         static async Task Read(SalerDbContext context)
         {
-            var saler_accounts = await context.SalerInfo.AsNoTracking().ToListAsync();
-            saler_accounts.ForEach(account => Console.WriteLine(account.UserName));
+            //await context.SalerInfo.AsNoTracking().ToListAsync().ContinueWith(t => Console.WriteLine(t.Result.Count));
+            //await context.SalerScore.AsNoTracking().ToListAsync().ContinueWith(t => Console.WriteLine(t.Result.Count));
+            await context.SalerAddress.AsNoTracking().ToListAsync().ContinueWith(t => t.Result.ForEach(a=>Console.WriteLine(a.Address)));
         }
 
         static async Task Write(SalerDbContext context)
         {
-            await context.SalerInfo.AddAsync(new SalerInfo
+            var r = await context.SalerInfo.AddAsync(new SalerInfo
             {
                 UserName = "老周",
-                Id = -1,
-                AccountId =-1
             });
+
+            await context.SalerScore.AddAsync(new SalerScore
+            {
+                SalerId = r.Entity.Id,
+                Score = 10
+            });
+
+            await context.SalerAddress.AddAsync(new SalerAddress
+            {
+                SalerId = r.Entity.Id,
+                Address ="十里铺"
+            });
+
             await context.SaveChangesAsync();
         }
     }
