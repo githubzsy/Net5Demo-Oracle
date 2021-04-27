@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Saler.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tools;
 
-namespace WebApi.EF
+namespace WebApi.EF.SalerDb
 {
     public class SalerDbContext : DbContext
     {
@@ -15,7 +14,7 @@ namespace WebApi.EF
         {
         }
 
-        public DbSet<SalerAccount> SalerAccount { get; set; }
+        public DbSet<SalerInfo> SalerInfo { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -26,9 +25,9 @@ namespace WebApi.EF
                 modelBuilder.HasDefaultSchema("SALER");
             }
 
-            modelBuilder.Entity<SalerAccount>(entity =>
+            modelBuilder.Entity<SalerInfo>(entity =>
             {
-                entity.Property(e => e.Id).UseHiLo(Consts.SEQ_SALER_ID);
+                entity.Property(e => e.Id).UseHiLo(Consts.SEQ_INFO_ID);
             });
 
             base.OnModelCreating(modelBuilder);
@@ -36,7 +35,7 @@ namespace WebApi.EF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseOracle("User Id=saler;password=welcome;Data Source=localhost:1521/salepdb;");
+            optionsBuilder.UseOracle(Consts.ORACLE_CONNSTR);
 
             base.OnConfiguring(optionsBuilder);
         }

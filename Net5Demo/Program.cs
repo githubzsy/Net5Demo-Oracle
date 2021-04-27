@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using WebApi.EF;
+using WebApi.EF.SalerDb;
 
 namespace Net5Demo
 {
@@ -20,16 +21,17 @@ namespace Net5Demo
 
         static async Task Read(SalerDbContext context)
         {
-            var saler_accounts = await context.SalerAccount.AsNoTracking().ToListAsync();
-            saler_accounts.ForEach(account => Console.WriteLine(account.Account));
+            var saler_accounts = await context.SalerInfo.AsNoTracking().ToListAsync();
+            saler_accounts.ForEach(account => Console.WriteLine(account.UserName));
         }
 
         static async Task Write(SalerDbContext context)
         {
-            await context.SalerAccount.AddAsync(new Saler.Core.Entities.SalerAccount
+            await context.SalerInfo.AddAsync(new SalerInfo
             {
-                Account = "老周",
-                Id = -1
+                UserName = "老周",
+                Id = -1,
+                AccountId =-1
             });
             await context.SaveChangesAsync();
         }
