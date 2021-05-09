@@ -10,6 +10,7 @@ namespace Models.SalerDb
         public string UserName { get; set; }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>

@@ -22,36 +22,36 @@ namespace WebApi.EF.SalerDb
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            Console.WriteLine(this.Database.ProviderName);
             //判断当前数据库是Oracle 需要手动添加Schema(DBA提供的数据库账号名称)
             if (this.Database.IsOracle())
             {
                 // 设定当前默认table space
                 modelBuilder.HasDefaultSchema("SALER");
+
+                modelBuilder.Entity<SalerInfo>(entity =>
+                {
+                    entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerInfo.SEQ_SALERINFO_ID);
+                });
+
+                modelBuilder.Entity<SalerScore>(entity =>
+                {
+                    entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerScore.SEQ_SALER_SCORE_ID);
+                });
+
+                modelBuilder.Entity<SalerAddress>(entity =>
+                {
+                    entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerAddress.SEQ_SALER_ADDRESS_ID);
+                });
             }
 
-            modelBuilder.Entity<SalerInfo>(entity =>
+            // 若数据库是Mysql
+            if (this.Database.ProviderName.StartsWith("mysql", StringComparison.OrdinalIgnoreCase))
             {
-                entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerInfo.SEQ_SALERINFO_ID);
-            });
 
-            modelBuilder.Entity<SalerScore>(entity =>
-            {
-                entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerScore.SEQ_SALER_SCORE_ID);
-            });
-
-            modelBuilder.Entity<SalerAddress>(entity =>
-            {
-                entity.Property(e => e.Id).UseHiLo(Models.SalerDb.SalerAddress.SEQ_SALER_ADDRESS_ID);
-            });
+            }
 
             base.OnModelCreating(modelBuilder);
         }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseOracle(Consts.ORACLE_CONNSTR);
-
-        //    base.OnConfiguring(optionsBuilder);
-        //}
     }
 }

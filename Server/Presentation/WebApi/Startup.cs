@@ -27,8 +27,23 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // 配置应用oracle dbcontext
-            services.AddEntityFrameworkOracle().AddDbContext<SalerDbContext>(options => options.UseOracle(Configuration.GetConnectionString("SalerDb")));
+            var dbType= Configuration.GetValue<string>("DbType").ToUpper();
+            string connStr = Configuration.GetConnectionString("SalerDb");
+            switch (dbType)
+            {
+                case "MYSQL":
+                    services.AddDbContext<SalerDbContext>(options => options.UseMySQL(connStr));
+                    break;
+                case "ORACLE":
+                    // 配置应用oracle dbcontext
+                    services.AddEntityFrameworkOracle().AddDbContext<SalerDbContext>(options => options.UseOracle(connStr));
+                    break;
+                case "SQLSERVER":
+                    services.AddEntityFrameworkSqlServer().AddDbContext<SalerDbContext>(options => options.UseSqlServer(connStr));
+                    break;
+                default:
+                    throw new Exception($"不支持的数据库类型{dbType}");
+            }
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

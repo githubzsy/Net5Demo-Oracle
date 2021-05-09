@@ -12,6 +12,7 @@ namespace Models.SalerDb
     public class SalerScore
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         /// <summary>

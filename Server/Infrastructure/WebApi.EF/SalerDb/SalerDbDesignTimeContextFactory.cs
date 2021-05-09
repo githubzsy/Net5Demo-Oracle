@@ -13,8 +13,8 @@ namespace WebApi.EF.SalerDb
         public SalerDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<SalerDbContext>();
-            optionsBuilder.UseOracle(Consts.ORACLE_CONNSTR);
-
+            //optionsBuilder.UseOracle(Consts.ORACLE_CONNSTR);
+            optionsBuilder.UseMySQL(Consts.MYSQL_CONNSTR);
             return new SalerDbContext(optionsBuilder.Options);
         }
     }
