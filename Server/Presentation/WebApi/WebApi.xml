@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="M:WebApi.Controllers.SalerInfoesController.GetSalerInfo">
+            <summary>
+            获取所有销售员信息
+            </summary>
+            <returns>所有销售员信息</returns>
+        </member>
+        <member name="M:WebApi.Controllers.SalerInfoesController.GetSalerInfo(System.Int32)">
+            <summary>
+            根据Id获取销售员信息
+            </summary>
+            <param name="id">销售员Id</param>
+            <returns>销售员信息</returns>
+        </member>
+    </members>
+</doc>

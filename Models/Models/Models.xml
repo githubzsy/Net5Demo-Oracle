@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Models</name>
+    </assembly>
+    <members>
+        <member name="F:Models.SalerDb.SalerAddress.SEQ_SALER_ADDRESS_ID">
+            <summary>
+            主键序列
+            </summary>
+        </member>
+        <member name="T:Models.SalerDb.SalerInfo">
+            <summary>
+            销售员信息
+            </summary>
+        </member>
+        <member name="P:Models.SalerDb.SalerInfo.UserName">
+            <summary>
+            销售员名称
+            </summary>
+        </member>
+        <member name="P:Models.SalerDb.SalerInfo.Id">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="F:Models.SalerDb.SalerInfo.SEQ_SALERINFO_ID">
+            <summary>
+            主键序列
+            </summary>
+        </member>
+        <member name="P:Models.SalerDb.SalerInfo.AccountId">
+            <summary>
+            账户Id
+            </summary>
+        </member>
+        <member name="F:Models.SalerDb.SalerScore.SEQ_SALER_SCORE_ID">
+            <summary>
+            主键序列
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -21,14 +21,21 @@ namespace WebApi.Controllers
             _context = context;
         }
 
-        // GET: api/SalerInfoes
+        /// <summary>
+        /// 获取所有销售员信息
+        /// </summary>
+        /// <returns>所有销售员信息</returns>
         [HttpGet]
         public async Task<ActionResult<IEnumerable<SalerInfo>>> GetSalerInfo()
         {
             return await _context.SalerInfo.ToListAsync();
         }
 
-        // GET: api/SalerInfoes/5
+        /// <summary>
+        /// 根据Id获取销售员信息
+        /// </summary>
+        /// <param name="id">销售员Id</param>
+        /// <returns>销售员信息</returns>
         [HttpGet("{id}")]
         public async Task<ActionResult<SalerInfo>> GetSalerInfo(int id)
         {
