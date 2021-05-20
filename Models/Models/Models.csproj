@@ -8,4 +8,10 @@
     <DocumentationFile>C:\github\Net5Demo-Oracle\Models\Models\Models.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Update="Models.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
