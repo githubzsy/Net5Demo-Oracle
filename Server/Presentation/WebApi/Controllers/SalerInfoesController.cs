@@ -49,8 +49,12 @@ namespace WebApi.Controllers
             return salerInfo;
         }
 
-        // PUT: api/SalerInfoes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// 修改SalerInfo
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="salerInfo"></param>
+        /// <returns></returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> PutSalerInfo(int id, SalerInfo salerInfo)
         {
@@ -80,8 +84,11 @@ namespace WebApi.Controllers
             return NoContent();
         }
 
-        // POST: api/SalerInfoes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        /// <summary>
+        /// 新增
+        /// </summary>
+        /// <param name="salerInfo"></param>
+        /// <returns></returns>
         [HttpPost]
         public async Task<ActionResult<SalerInfo>> PostSalerInfo(SalerInfo salerInfo)
         {
@@ -91,7 +98,11 @@ namespace WebApi.Controllers
             return CreatedAtAction("GetSalerInfo", new { id = salerInfo.Id }, salerInfo);
         }
 
-        // DELETE: api/SalerInfoes/5
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSalerInfo(int id)
         {
